@@ -22,7 +22,13 @@ import cors from 'cors';
 import { answerQuestion } from './rag/answer.js';
 
 const app = express();
-app.use(cors());
+
+/* ✅ Tillåt din frontend-domän (one.com) att prata med backend */
+app.use(cors({
+  origin: 'https://santinojaramillo.com',
+  methods: ['GET', 'POST'],
+}));
+
 app.use(express.json());
 
 app.post('/api/chat', async (req, res) => {
@@ -48,6 +54,10 @@ app.post('/api/chat', async (req, res) => {
     res.status(500).json({ error: 'internal_error' });
   }
 });
+
+/* ✅ En enkel hälsokontroll (valfritt men praktiskt) */
+app.get('/', (_, res) => res.send('OK'));
+app.get('/health', (_, res) => res.json({ ok: true }));
 
 const port = process.env.PORT || 8787;
 app.listen(port, () => {
