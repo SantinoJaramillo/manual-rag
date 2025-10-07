@@ -112,7 +112,7 @@ export async function answerQuestion({ question, manualId, topK = 8 }) {
   const res = await openai.chat.completions.create({
     model: 'gpt-4o-mini',
     messages,
-    temperature: 0.25,
+    temperature: 0.2,
     top_p: 1,
     max_tokens: 800,
     presence_penalty: 0,
