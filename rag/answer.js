@@ -134,7 +134,7 @@ export async function answerQuestion({ question, manualId, topK = 8 }) {
 
   // 4) Kör modellen (låg temperatur för faktanärhet)
   const res = await openai.chat.completions.create({
-    model: 'gpt-5',            // välj  modell här
+    model: 'gpt-4o',            // välj  modell här
     messages,
     temperature: 0.2,
     top_p: 1,
